@@ -1,8 +1,11 @@
+/* --- */
 
 body {
 	background-color: black;
 	color: white;
 }
+
+/* --- */
 
 #challenge {
 	font-size: 128px;
@@ -13,25 +16,28 @@ body {
 	font-size: 32px;
 }
 
+/* --- */
 
-.choice {
+#choice {
 	font-size: 64px;
 	font-weight: bold;
 }
 
-.choice .question {
+#choice .question {
 	color: #ccc;
 	font-style: italic;
 }
 
-.choice a {
+/* --- */
+
+a {
 	color: white;
 	text-decoration:none;
 	padding: 5px;
+	font-weight: bold;
 }
 
-.choice a:hover {
+a:hover {
 	background-color: white;
 	color: black;
 }
-

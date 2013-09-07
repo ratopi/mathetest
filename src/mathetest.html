@@ -17,7 +17,7 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
 	<script type="text/javascript">
 
 		var challengers = {
-			"#m": function()
+			"?m": function()
 			{
 				var a = Math.ceil( Math.random() * 10 );
 				var b = Math.ceil( Math.random() * 10 );
@@ -27,7 +27,7 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
 					"result": c
 					};
 			},
-			"#d": function()
+			"?d": function()
 			{
 				var a = Math.ceil( Math.random() * 10 );
 				var b = Math.ceil( Math.random() * 10 );
@@ -44,14 +44,17 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
 		$( document ).ready(
 			function()
 			{
-				var challenger = challengers[ window.location.hash ];
+				var challenger = challengers[ window.location.search ];
 
-				if ( ! challenger )
+				if ( challenger )
 				{
-					challenger = challengers[ '#d' ];
+					$( '#choice' ).hide();
+					de.ratopi.mathetest.init( challenger);
 				}
-
-				de.ratopi.mathetest.init( challenger);
+				else
+				{
+					$( '#mathetest' ).hide();
+				}
 			}
 		 );
 
@@ -61,25 +64,39 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 <body>
 
-	<span id="duration"></span>
+	<span id="choice">
+		<span class="question">Was möchtest Du üben?</span>
+		<br/>
+		<a href="mathetest.html?d">Division</a>
+		<br/>
+		<a href="mathetest.html?m">Multiplikation</a>
+	</span>
 
-	<div id="challenge">
+	<span id="mathetest">
 
-		<span id="task">A</span> = <span id="numberC">C</span>
-		<br>
-		<span id="message"></span>
-		
-	</div>
-	
-	<div id="resultDiv">
-		<table>
-			<tr><td id="correctAnswers"></td><td>Aufgaben korrekt gelöst</td></tr>
-			<tr><td id="wrongAnswers"></td><td>Aufgaben falsch gelöst</td></tr>
-			<tr><td  id="answerCount"></td><td>Aufgaben insgesamt</td></tr>
-			<tr><td id="quota"></td><td>korrekt gelöst</td></tr>
-			<tr><td id="durationPer"></td><td>pro Aufgabe</td></tr>
-		</table>
-	</div>
+		<span id="duration"></span>
+
+		<div id="challenge">
+
+			<span id="task">A</span> = <span id="numberC">C</span>
+			<br>
+			<span id="message"></span>
+
+		</div>
+
+		<div id="resultDiv">
+			<table>
+				<tr><td id="correctAnswers"></td><td>Aufgaben korrekt gelöst</td></tr>
+				<tr><td id="wrongAnswers"></td><td>Aufgaben falsch gelöst</td></tr>
+				<tr><td  id="answerCount"></td><td>Aufgaben insgesamt</td></tr>
+				<tr><td id="quota"></td><td>korrekt gelöst</td></tr>
+				<tr><td id="durationPer"></td><td>pro Aufgabe</td></tr>
+			</table>
+			<br/>
+			<a href="mathetest.html">Zurück</a>
+		</div>
+
+	</span>
 		
 </body>
 

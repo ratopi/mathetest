@@ -38,7 +38,7 @@ de.ratopi.mathetest = function()
 
 		correctAnswers = 0;
 		answerCount = 0;
-		runningTime = 5 * 60 * 1000; // 5 minutes
+		runningTime = 2; // 5 * 60 * 1000; // 5 minutes
 
 		$( "#resultDiv" ).hide();
 
