@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+License: http://creativecommons.org/licenses/by-nc-sa/3.0/
+-->
+<html>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<title>Mathetest</title>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+	<script type="text/javascript" src="de.ratopi.mathetest.js"></script>
+
+	<script type="text/javascript">
+
+		var challengers = {
+			"#m": function()
+			{
+				var a = Math.ceil( Math.random() * 10 );
+				var b = Math.ceil( Math.random() * 10 );
+				var c = a * b;
+				return {
+					"task": a + " · " + b,
+					"result": c
+					};
+			},
+			"#d": function()
+			{
+				var a = Math.ceil( Math.random() * 10 );
+				var b = Math.ceil( Math.random() * 10 );
+				var c = a * b;
+				return {
+					"task": c + " : " + b,
+					"result": a
+				};
+			},
+		};
+
+		// ---
+
+		$( document ).ready(
+			function()
+			{
+				var challenger = challengers[ window.location.hash ];
+
+				if ( ! challenger )
+				{
+					challenger = challengers[ '#d' ];
+				}
+
+				de.ratopi.mathetest.init( challenger);
+			}
+		 );
+
+	</script>
+
+</head>
+
+<body>
+
+	<span id="duration"></span>
+
+	<div id="challenge">
+
+		<span id="task">A</span> = <span id="numberC">C</span>
+		<br>
+		<span id="message"></span>
+		
+	</div>
+	
+	<div id="resultDiv">
+		<table>
+			<tr><td id="correctAnswers"></td><td>Aufgaben korrekt gelöst</td></tr>
+			<tr><td id="wrongAnswers"></td><td>Aufgaben falsch gelöst</td></tr>
+			<tr><td  id="answerCount"></td><td>Aufgaben insgesamt</td></tr>
+			<tr><td id="quota"></td><td>korrekt gelöst</td></tr>
+			<tr><td id="durationPer"></td><td>pro Aufgabe</td></tr>
+		</table>
+	</div>
+		
+</body>
+
+</html>
+

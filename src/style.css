@@ -1,0 +1,37 @@
+
+body {
+	background-color: black;
+	color: white;
+}
+
+#challenge {
+	font-size: 128px;
+	font-weight: bold;
+}
+
+#resultDiv {
+	font-size: 32px;
+}
+
+
+.choice {
+	font-size: 64px;
+	font-weight: bold;
+}
+
+.choice .question {
+	color: #ccc;
+	font-style: italic;
+}
+
+.choice a {
+	color: white;
+	text-decoration:none;
+	padding: 5px;
+}
+
+.choice a:hover {
+	background-color: white;
+	color: black;
+}
+
