@@ -44,7 +44,7 @@ de.ratopi.mathetest = function()
 
 		nextChallenge();
 
-		$( document ).keypress( keypressed );
+		$( document ).keypress( keypressHandler );
 
 		showTime();
 	}
@@ -62,7 +62,7 @@ de.ratopi.mathetest = function()
 		showCurrentInput();
 	}
 
-	function keypressed( event )
+	function keypressHandler( event )
 	{
 		if ( ! startTime )
 		{
