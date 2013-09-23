@@ -88,7 +88,7 @@ var challengers = {
 	},
 
 	"?a": {
-		"name": "Addition (einstellig)",
+		"name": "Addition",
 		"fn": function()
 		{
 			var a = Math.floor( Math.random() * 10 );
@@ -104,7 +104,7 @@ var challengers = {
 	},
 
 	"?s": {
-		"name": "Subtraktion  (einstellig)",
+		"name": "Subtraktion",
 		"fn": function()
 		{
 			var a = Math.ceil( Math.random() * 10 );
