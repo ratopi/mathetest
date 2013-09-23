@@ -13,33 +13,9 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
 	<script type="text/javascript" src="lib/jquery-1.10.2.min.js"></script>
 
 	<script type="text/javascript" src="de.ratopi.mathetest.js"></script>
+	<script type="text/javascript" src="challengers.js"></script>
 
 	<script type="text/javascript">
-
-		var challengers = {
-			"?m": function()
-			{
-				var a = Math.ceil( Math.random() * 10 );
-				var b = Math.ceil( Math.random() * 10 );
-				var c = a * b;
-				return {
-					"task": a + " · " + b,
-					"result": c
-					};
-			},
-			"?d": function()
-			{
-				var a = Math.ceil( Math.random() * 10 );
-				var b = Math.ceil( Math.random() * 10 );
-				var c = a * b;
-				return {
-					"task": c + " : " + b,
-					"result": a
-				};
-			},
-		};
-
-		// ---
 
 		$( document ).ready(
 			function()
@@ -49,11 +25,23 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
 				if ( challenger )
 				{
 					$( '#choice' ).hide();
-					de.ratopi.mathetest.init( challenger);
+					de.ratopi.mathetest.init( challenger.fn );
 				}
 				else
 				{
 					$( '#mathetest' ).hide();
+					// Build links to all challengers:
+					$( '#links' ).empty();
+					for ( var key in challengers )
+					{
+						$( '#links' )
+							.append( $( '<li/>' )
+								.append( $( '<a/>' )
+									.attr( 'href', "mathetest.html" + key )
+									.text( challengers[ key ].name )
+								)
+							);
+					}
 				}
 			}
 		 );
@@ -66,10 +54,7 @@ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
 
 	<span id="choice">
 		<span class="question">Was möchtest Du üben?</span>
-		<br/>
-		<a href="mathetest.html?d">Division</a>
-		<br/>
-		<a href="mathetest.html?m">Multiplikation</a>
+		<ul id="links"></ul>                       
 	</span>
 
 	<span id="mathetest">

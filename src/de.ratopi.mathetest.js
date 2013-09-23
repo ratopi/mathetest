@@ -23,6 +23,7 @@ de.ratopi.mathetest = function()
 
 	var finished;
 	var currentInput;
+	var currentInputMaxLength;
 
 	var startTime;
 	var correctAnswers;
@@ -35,6 +36,8 @@ de.ratopi.mathetest = function()
 	function init( _challenger )
 	{
 		challenger = _challenger;
+
+		currentInputMaxLength = 10;
 
 		correctAnswers = 0;
 		answerCount = 0;
@@ -83,19 +86,24 @@ de.ratopi.mathetest = function()
 		}
 		else
 		{
-			if ( charCode >= 48  &&  charCode <= 57 )
+			if ( currentInput.length < currentInputMaxLength )
 			{
-				var n = charCode - 48;
-				currentInput = currentInput + n;
-			}
-			else if ( keyCode === 8 )
-			{
-				if  ( currentInput.length > 0 )
+				if ( charCode >= 48  &&  charCode <= 57 ) // "0" .. "9"
 				{
-					currentInput = currentInput.substring( 0, currentInput.length - 1 );
+					var n = charCode - 48;
+					currentInput = currentInput + n;
+				}
+				if ( charCode === 82  ||  charCode === 114 ) // "R" or "r"
+				{
+					if ( currentInput.indexOf( 'R' ) === -1 ) currentInput += "R";
 				}
 			}
-			else if ( keyCode === 13 )
+
+			if ( keyCode === 8  ||  keyCode === 46 ) // "back space" or "del"
+			{
+				if  ( currentInput.length > 0 ) currentInput = currentInput.substring( 0, currentInput.length - 1 );
+			}
+			else if ( keyCode === 13 ) // Enter or Return
 			{
 				checkResult();
 			}
@@ -109,7 +117,29 @@ de.ratopi.mathetest = function()
 		if ( currentInput.length === 0 ) return;
 
 		answerCount++;
-		if ( currentInput == challenge.result )
+
+		var expected = challenge.result;
+
+		var correct = expected === currentInput;
+
+		if ( typeof expected === 'object' )
+		{
+			console.log( "ARRAY" );
+
+			for ( var key in challenge.result )
+			{
+				console.log( "testing " + expected[ key ] + " ?= " + currentInput );
+                if ( expected[ key ] === currentInput )
+                {
+                    correct = true;
+                    break;
+                }
+			}
+
+			expected = expected[ 0 ];
+		}
+		
+		if ( correct )
 		{
 			$( '#message' ).show().text( "RICHTIG" ).css( "background-color", "green" );
 			finished = true;
@@ -117,7 +147,7 @@ de.ratopi.mathetest = function()
 		}
 		else
 		{
-			$( '#message' ).show().html( "* FALSCH! *<br>Richtig ist: " + challenge.result ).css( "background-color", "red" );
+			$( '#message' ).show().html( "* FALSCH! *<br>Richtig ist: " + expected ).css( "background-color", "red" );
 			finished = true;
 		}
 	}
