@@ -120,7 +120,7 @@ de.ratopi.mathetest = function()
 
 		var expected = challenge.result;
 
-		var correct = expected === currentInput;
+		var correct = expected == currentInput;
 
 		if ( typeof expected === 'object' )
 		{
@@ -129,7 +129,7 @@ de.ratopi.mathetest = function()
 			for ( var key in challenge.result )
 			{
 				console.log( "testing " + expected[ key ] + " ?= " + currentInput );
-                if ( expected[ key ] === currentInput )
+                if ( expected[ key ] == currentInput )
                 {
                     correct = true;
                     break;

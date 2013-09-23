@@ -75,13 +75,47 @@ var challengers = {
 			var c = Math.floor( a / b );
 			var rest = a % b;
 
-			var expected = []
+			var expected = [];
 			if ( rest === 0 ) expected.push( "" + c );
 			expected.push( c + "R" + rest );
 			if ( c === 0 ) expected.push( "R" + rest );
 
 			return {
 				"task": a + " : " + b,
+				"result": expected
+			};
+		}
+	},
+
+	"?a": {
+		"name": "Addition (einstellig)",
+		"fn": function()
+		{
+			var a = Math.floor( Math.random() * 10 );
+			var b = Math.floor( Math.random() * 10 );
+
+			var expected = a + b;
+
+			return {
+				"task": a + " + " + b,
+				"result": expected
+			};
+		}
+	},
+
+	"?s": {
+		"name": "Subtraktion  (einstellig)",
+		"fn": function()
+		{
+			var a = Math.ceil( Math.random() * 10 );
+			var b = Math.ceil( Math.random() * 10 );
+
+			var c = a + b;
+			
+			var expected = c - a;
+			
+			return {
+				"task": c + " - " +a,
 				"result": expected
 			};
 		}
