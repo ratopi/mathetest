@@ -5,4 +5,4 @@ Du hast 5 Minuten Zeit um möglichst viele Aufgaben zu lösen.
 
 Viel Spaß
 
-Eine Demo ist hier zu sehen: http://ratopi.github.io/mathetest/.
+Eine Demo ist hier zu sehen: http://ratopi.github.io/mathetest/src/mathetest.html.
