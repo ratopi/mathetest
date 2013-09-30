@@ -28,7 +28,7 @@ body {
 /* --- */
 
 #choice {
-	font-size: 64px;
+	font-size: 48px;
 	font-weight: bold;
 }
 
@@ -37,13 +37,24 @@ body {
 	font-style: italic;
 }
 
+#choice ul {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#choice li {
+	margin-bottom: 8px;
+	padding-left: 20px;
+	letter-spacing: 2px;
+}
+
 /* --- */
 
 a {
 	color: white;
 	text-decoration:none;
 	padding: 5px;
-	font-weight: bold;
+	font-weight: normal;
 }
 
 a:hover {
