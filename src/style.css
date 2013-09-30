@@ -16,6 +16,10 @@ body {
 	font-size: 32px;
 }
 
+#keyboardSwitch {
+	font-size:32px;
+}
+
 #keyboard table td {
 	font-size: 48px;
 	font-weight: bold;
@@ -23,6 +27,10 @@ body {
 	padding: 10px;
 	width:50px;
 	text-align: center;
+}
+
+#keyboard table td:hover {
+	background-color:#555;
 }
 
 /* --- */

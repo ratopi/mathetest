@@ -43,12 +43,20 @@ de.ratopi.mathetest = function()
 		answerCount = 0;
 		runningTime = 5 * 60 * 1000; // 5 minutes
 
-		$( "#resultDiv" ).hide();
+		// --- prepare GUI ---
 
-		nextChallenge();
+		$( "#resultDiv" ).hide();
+		$( "#keyboard" ).hide();
+
+		$( "#keyboardSwitch" ).bind( 'click', function() { $( '#keyboard' ).toggle(); } );
+
+		$( "#keyboard td" ).bind( 'click', clickOnKeyboardTable );
 
 		$( document ).keypress( keypressHandler );
 
+		// --- start logic ---
+
+		nextChallenge();
 		showTime();
 	}
 
@@ -67,19 +75,52 @@ de.ratopi.mathetest = function()
 
 	function keypressHandler( event )
 	{
+		var charCode = event.charCode;
+		var keyCode = event.keyCode;
+		var asciiCode = event.which;
+
+		if ( charCode === 0 )
+		{
+            if ( keyCode === 8  ||  keyCode === 46 )
+            {
+                charCode = 8;
+            }
+            else if ( keyCode === 13 )
+            {
+                charCode = 13;
+            }
+		}
+
+		handleChar( charCode );
+	}
+
+	function clickOnKeyboardTable()
+	{
+		var charCode = $( this ).text().charCodeAt( 0 );
+
+		if ( charCode === 0x21B5 )
+		{
+			charCode = 13;
+		}
+		else if ( charCode === 0x2190 )
+		{
+			charCode = 8;
+		}
+
+		handleChar( charCode );
+	}
+
+	function handleChar( charCode )
+	{
 		if ( ! startTime )
 		{
 			startTime = new Date().getTime();
 			showTime();
 		}
 
-		var charCode = event.charCode;
-		var keyCode = event.keyCode;
-		var asciiCode = event.which;
-
 		if ( finished )
 		{
-			if ( keyCode === 13 )
+			if ( charCode === 13 )
 			{
 				nextChallenge();
 			}
@@ -99,11 +140,11 @@ de.ratopi.mathetest = function()
 				}
 			}
 
-			if ( keyCode === 8  ||  keyCode === 46 ) // "back space" or "del"
+			if ( charCode === 8 ) // "back space" or "del"
 			{
 				if  ( currentInput.length > 0 ) currentInput = currentInput.substring( 0, currentInput.length - 1 );
 			}
-			else if ( keyCode === 13 ) // Enter or Return
+			else if ( charCode === 13 ) // Enter or Return
 			{
 				checkResult();
 			}
