@@ -31,6 +31,8 @@ de.ratopi.mathetest = function()
 
 	var runningTime;
 
+	var keyboardVisible;
+
 	// ---
 
 	function init( _challenger )
@@ -43,14 +45,17 @@ de.ratopi.mathetest = function()
 		answerCount = 0;
 		runningTime = 5 * 60 * 1000; // 5 minutes
 
+		keyboardVisible = false;
+
 		// --- prepare GUI ---
 
 		$( "#resultDiv" ).hide();
 		$( "#keyboard" ).hide();
 
-		$( "#keyboardSwitch" ).bind( 'click', function() { $( '#keyboard' ).toggle(); } );
-
+		$( "#keyboardSwitch" ).bind( 'click', toggleVirtualKeyboard );
 		$( "#keyboard td" ).bind( 'click', clickOnKeyboardTable );
+
+		$( "#message" ).bind( 'click', function() { handleChar( 13 ); } ); // send return/enter ...
 
 		$( document ).keypress( keypressHandler );
 
@@ -71,6 +76,20 @@ de.ratopi.mathetest = function()
 		$( "#task" ).text( challenge.task );
 
 		showCurrentInput();
+	}
+
+	function toggleVirtualKeyboard()
+	{
+		if ( keyboardVisible )
+		{
+			$( '#keyboard' ).hide();
+			keyboardVisible = false;
+		}
+		else
+		{
+			$( '#keyboard' ).show();
+			keyboardVisible = true;
+		}
 	}
 
 	function keypressHandler( event )
