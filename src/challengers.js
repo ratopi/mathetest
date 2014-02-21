@@ -2,14 +2,27 @@
 var challengers =
 	function()
 	{
+		// returns a number between 1 and 10
+		function createNumber_1_10()
+		{
+			return Math.ceil( Math.random() * 10 );
+		}
+
+		// ---
+
+		// storage for storing information about the last task ...
+		var lastTask = {};
+
+		// --
+
 		return {
 
 			"?m": {
 				"name": "Multiplikation",
 				"fn":  function()
 				{
-					var a = Math.ceil( Math.random() * 10 );
-					var b = Math.ceil( Math.random() * 10 );
+					var a = createNumber_1_10();
+					var b = createNumber_1_10();
 					var c = a * b;
 					return {
 						"task": a + " · " + b,
@@ -22,8 +35,8 @@ var challengers =
 				"name": "Multiplikation (mit Zehnern)",
 				"fn":  function()
 				{
-					var a = Math.ceil( Math.random() * 10 );
-					var b = Math.ceil( Math.random() * 10 );
+					var a = createNumber_1_10();
+					var b = createNumber_1_10();
 
 					Math.random() < .5 ? a *= 10 : b *= 10;
 
@@ -39,8 +52,8 @@ var challengers =
 				"name": "Division",
 				"fn": function()
 				{
-					var a = Math.ceil( Math.random() * 10 );
-					var b = Math.ceil( Math.random() * 10 );
+					var a = createNumber_1_10();
+					var b = createNumber_1_10();
 					var c = a * b;
 					return {
 						"task": c + " : " + b,
@@ -53,8 +66,8 @@ var challengers =
 				"name": "Division (mit Zehnern)",
 				"fn": function()
 				{
-					var a = Math.ceil( Math.random() * 10 );
-					var b = Math.ceil( Math.random() * 10 );
+					var a = createNumber_1_10();
+					var b = createNumber_1_10();
 
 					Math.random() < .5 ? a *= 10 : b *= 10;
 
@@ -70,8 +83,8 @@ var challengers =
 				"name": "Division mit Rest",
 				"fn": function()
 				{
-					var a = Math.ceil( Math.random() * 10 );
-					var b = Math.ceil( Math.random() * 10 );
+					var a = createNumber_1_10();
+					var b = createNumber_1_10();
 
 					if ( Math.random() < .5 ) a *= 10;
 
@@ -94,8 +107,8 @@ var challengers =
 				"name": "Addition",
 				"fn": function()
 				{
-					var a = Math.floor( Math.random() * 10 );
-					var b = Math.floor( Math.random() * 10 );
+					var a = createNumber_1_10() - 1;
+					var b = createNumber_1_10() - 1;
 
 					var expected = a + b;
 
@@ -110,8 +123,8 @@ var challengers =
 				"name": "Subtraktion",
 				"fn": function()
 				{
-					var a = Math.ceil( Math.random() * 10 );
-					var b = Math.ceil( Math.random() * 10 );
+					var a = createNumber_1_10();
+					var b = createNumber_1_10();
 
 					var c = a + b;
 
