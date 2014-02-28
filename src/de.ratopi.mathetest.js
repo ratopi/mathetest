@@ -22,8 +22,6 @@ de.ratopi.mathetest = function()
 	var challenge;
 
 	var finished;
-	var currentInput;
-	var currentInputMaxLength;
 
 	var startTime;
 	var correctAnswers;
@@ -37,24 +35,21 @@ de.ratopi.mathetest = function()
 	{
 		challenger = _challenger;
 
-		currentInputMaxLength = 10;
-
 		correctAnswers = 0;
 		answerCount = 0;
 		runningTime = 5 * 60 * 1000; // 5 minutes
 
 		$( "#resultDiv" ).hide();
 
-		nextChallenge();
+		$( '#result' ).keypress( keypressed );
 
-		$( document ).keypress( keypressed );
+		nextChallenge();
 
 		showTime();
 	}
 
 	function nextChallenge()
 	{
-		currentInput = "";
 		finished = false;
 		$( "#message" ).hide();
 
@@ -62,7 +57,7 @@ de.ratopi.mathetest = function()
 
 		$( "#task" ).text( challenge.task );
 
-		showCurrentInput();
+		$( '#result' ).val( '' ).focus();
 	}
 
 	function keypressed( event )
@@ -77,43 +72,29 @@ de.ratopi.mathetest = function()
 		var keyCode = event.keyCode;
 		var asciiCode = event.which;
 
-		if ( finished )
+		console.log( keyCode  + " " + finished );
+
+		if ( keyCode === 13 ) // return / enter
 		{
-			if ( keyCode === 13 )
+			if ( finished )
 			{
 				nextChallenge();
 			}
-		}
-		else
-		{
-			if ( currentInput.length < currentInputMaxLength )
-			{
-				if ( charCode >= 48  &&  charCode <= 57 ) // "0" .. "9"
-				{
-					var n = charCode - 48;
-					currentInput = currentInput + n;
-				}
-				if ( charCode === 82  ||  charCode === 114 ) // "R" or "r"
-				{
-					if ( currentInput.indexOf( 'R' ) === -1 ) currentInput += "R";
-				}
-			}
-
-			if ( keyCode === 8  ||  keyCode === 46 ) // "back space" or "del"
-			{
-				if  ( currentInput.length > 0 ) currentInput = currentInput.substring( 0, currentInput.length - 1 );
-			}
-			else if ( keyCode === 13 ) // Enter or Return
+			else
 			{
 				checkResult();
 			}
 		}
-
-		showCurrentInput();
+		else if ( keyCode === 0  &&  ( charCode < 48  ||  charCode > 57 ) && ( charCode !== 82  &&  charCode !== 114 ) ) // '0' .. '9' , 'R' or 'r'
+		{
+			return false;
+		}
 	}
 
 	function checkResult()
 	{
+		var currentInput = $( '#result' ).val();
+
 		if ( currentInput.length === 0 ) return;
 
 		answerCount++;
@@ -150,11 +131,6 @@ de.ratopi.mathetest = function()
 			$( '#message' ).show().html( "* FALSCH! *<br>Richtig ist: " + expected ).css( "background-color", "red" );
 			finished = true;
 		}
-	}
-
-	function showCurrentInput()
-	{
-		$( "#numberC" ).text( currentInput + "_" );
 	}
 
 	function showTime()
