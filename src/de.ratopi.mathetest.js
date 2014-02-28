@@ -95,6 +95,10 @@ de.ratopi.mathetest = function()
 				checkResult();
 			}
 		}
+		else if ( finished )
+		{
+			return false;
+		}
 		else if ( keyCode === 0  &&  ( charCode < 48  ||  charCode > 57 ) && ( charCode !== 82  &&  charCode !== 114 ) ) // '0' .. '9' , 'R' or 'r'
 		{
 			return false;
