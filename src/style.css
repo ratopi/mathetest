@@ -4,12 +4,18 @@
 	background-color: black;
 	color: white;
 	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+body {
 	font-family: serif;
 }
 
 /* --- */
 
-#challenge, #challenge input {
+#challenge {
 	font-size: 128px;
 	font-weight: bold;
 }
@@ -18,7 +24,15 @@
 	width: 3em;
 }
 
-// ---
+#message.correct {
+	background-color: green;
+}
+
+#message.wrong {
+	background-color: red;
+}
+
+/* --- */
 
 #resultDiv {
 	font-size: 32px;
@@ -59,4 +73,12 @@ a {
 a:hover {
 	background-color: white;
 	color: black;
+}
+
+#nochmal:after {
+	content: ' ?';
+}
+
+#nochmal:hover:after {
+	content: ' !';
 }

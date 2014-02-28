@@ -43,6 +43,8 @@ de.ratopi.mathetest = function()
 
 		$( '#result' ).keypress( keypressed );
 
+		$( '#message' ).click( nextChallengeIfFinished );
+
 		nextChallenge();
 
 		showTime();
@@ -58,6 +60,14 @@ de.ratopi.mathetest = function()
 		$( "#task" ).text( challenge.task );
 
 		$( '#result' ).val( '' ).focus();
+	}
+
+	function nextChallengeIfFinished()
+	{
+		if ( finished )
+		{
+			nextChallenge();
+		}
 	}
 
 	function keypressed( event )
@@ -122,13 +132,13 @@ de.ratopi.mathetest = function()
 		
 		if ( correct )
 		{
-			$( '#message' ).show().text( "RICHTIG" ).css( "background-color", "green" );
+			$( '#message' ).show().text( "RICHTIG" ).addClass( 'correct' ).removeClass( 'wrong' );
 			finished = true;
 			correctAnswers++;
 		}
 		else
 		{
-			$( '#message' ).show().html( "* FALSCH! *<br>Richtig ist: " + expected ).css( "background-color", "red" );
+			$( '#message' ).show().html( "* FALSCH! *<br>Richtig ist: " + expected ).removeClass( 'correct' ).addClass( 'wrong' );
 			finished = true;
 		}
 	}
