@@ -1,2 +1,14 @@
-*.iml
 *~
+*.beam
+/*.iml
+/*.ipr
+/*.iws
+/.classpath
+/.idea
+/.metadata
+/.pmd
+/.project
+/.settings
+/target
+.couchappignore
+.couchapprc

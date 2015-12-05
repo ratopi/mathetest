@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+License: http://creativecommons.org/licenses/by-nc-sa/3.0/
+-->
+<html>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<title>Mathetest Ergebnisse</title>
+
+	<script type="text/javascript" src="lib/jquery-1.10.2.min.js"></script>
+
+	<script type="text/javascript">
+
+		$( document ).ready(
+				function ()
+				{
+					var results = JSON.parse( window.localStorage.getItem( "results" ) );
+					for ( var k in results )
+					{
+						var result = results[ k ];
+
+						var row =
+								$( "<tr>" )
+										.append( $( "<td>" ).text( new Date( result.time ).toISOString() ) )
+										.append( $( "<td>" ).text( result.name ) )
+										.append( $( "<td>" ).text( result.answerCount ) )
+										.append( $( "<td>" ).text( result.correctAnswers ) )
+										.append( $( "<td>" ).text( result.runningTime ) );
+
+						$( "#results tbody" ).append( row );
+					}
+				}
+		);
+
+	</script>
+
+</head>
+<body>
+
+<table id="results">
+	<thead>
+	<tr>
+		<th>Datum</th>
+		<th>Art</th>
+		<th>Antworten</th>
+		<th>davon korrekt</th>
+		<th>Dauer</th>
+	</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+</body>
+</html>
+

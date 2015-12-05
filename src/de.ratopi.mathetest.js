@@ -1,6 +1,6 @@
 /*
-License: http://creativecommons.org/licenses/by-nc-sa/3.0/
-*/
+ License: http://creativecommons.org/licenses/by-nc-sa/3.0/
+ */
 
 // --- package creation ...
 
@@ -9,11 +9,11 @@ de.ratopi = de.ratopi || {};
 
 // --- package interface definition
 
-de.ratopi.mathetest = function()
+de.ratopi.mathetest = function ()
 {
 	return {
-		"init": init,
-	}
+		"init": init
+	};
 
 	// ---
 
@@ -55,7 +55,7 @@ de.ratopi.mathetest = function()
 		finished = false;
 		$( "#message" ).hide();
 
-		challenge = challenger();
+		challenge = challenger.fn();
 
 		$( "#task" ).text( challenge.task );
 
@@ -82,7 +82,7 @@ de.ratopi.mathetest = function()
 		var keyCode = event.keyCode;
 		var asciiCode = event.which;
 
-		console.log( keyCode  + " " + finished );
+		console.log( keyCode + " " + finished );
 
 		if ( keyCode === 13 ) // return / enter
 		{
@@ -99,7 +99,7 @@ de.ratopi.mathetest = function()
 		{
 			return false;
 		}
-		else if ( keyCode === 0  &&  ( charCode < 48  ||  charCode > 57 ) && ( charCode !== 82  &&  charCode !== 114 ) ) // '0' .. '9' , 'R' or 'r'
+		else if ( keyCode === 0 && ( charCode < 48 || charCode > 57 ) && ( charCode !== 82 && charCode !== 114 ) ) // '0' .. '9' , 'R' or 'r'
 		{
 			return false;
 		}
@@ -111,7 +111,7 @@ de.ratopi.mathetest = function()
 
 		if ( currentInput.length === 0 ) return;
 
-		answerCount++;
+		answerCount ++;
 
 		var expected = challenge.result;
 
@@ -124,21 +124,21 @@ de.ratopi.mathetest = function()
 			for ( var key in challenge.result )
 			{
 				console.log( "testing " + expected[ key ] + " ?= " + currentInput );
-                if ( expected[ key ] == currentInput )
-                {
-                    correct = true;
-                    break;
-                }
+				if ( expected[ key ] == currentInput )
+				{
+					correct = true;
+					break;
+				}
 			}
 
 			expected = expected[ 0 ];
 		}
-		
+
 		if ( correct )
 		{
 			$( '#message' ).show().text( "RICHTIG" ).addClass( 'correct' ).removeClass( 'wrong' );
 			finished = true;
-			correctAnswers++;
+			correctAnswers ++;
 		}
 		else
 		{
@@ -178,6 +178,8 @@ de.ratopi.mathetest = function()
 
 	function gameOver()
 	{
+		storeResult();
+
 		var wrongAnswers = answerCount - correctAnswers;
 		$( "#correctAnswers" ).text( correctAnswers );
 		$( "#wrongAnswers" ).text( wrongAnswers );
@@ -187,6 +189,28 @@ de.ratopi.mathetest = function()
 
 		$( "#challenge" ).hide();
 		$( "#resultDiv" ).show();
+	}
+
+	function storeResult()
+	{
+		var store = window.localStorage;
+
+		if ( store )
+		{
+			var result = {
+				"time": new Date().getTime(),
+				"name": challenger.name,
+				"answerCount": answerCount,
+				"correctAnswers": correctAnswers,
+				"runningTime": runningTime
+			};
+
+			store.setItem("result." + result.time, JSON.stringify(result));
+			var data = store.getItem( "results" );
+			var o = data ? JSON.parse( data ) : [];
+			o.push(result);
+			store.setItem("results", JSON.stringify(o));
+		}
 	}
 
 }();
