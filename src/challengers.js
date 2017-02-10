@@ -118,6 +118,26 @@ var challengers =
 				}
 			},
 
+			"?a10": {
+				"name": "Addition (10er)",
+				"fn": function ()
+				{
+					var a, b, expected;
+
+					do {
+						a = createNumber_1_10() - 1;
+						b = createNumber_1_10() - 1;
+
+						expected = a + b;
+					} while ( expected > 10 );
+
+					return {
+						"task": a + " + " + b,
+						"result": expected
+					};
+				}
+			},
+
 			"?s": {
 				"name": "Subtraktion",
 				"fn": function ()
