@@ -11,12 +11,6 @@ de.ratopi = de.ratopi || {};
 
 de.ratopi.mathetest = function ()
 {
-	return {
-		"init": init
-	};
-
-	// ---
-
 	var challenger;
 
 	var challenge;
@@ -30,25 +24,6 @@ de.ratopi.mathetest = function ()
 	var runningTime;
 
 	// ---
-
-	function init( _challenger )
-	{
-		challenger = _challenger;
-
-		correctAnswers = 0;
-		answerCount = 0;
-		runningTime = 5 * 60 * 1000; // 5 minutes
-
-		$( "#resultDiv" ).hide();
-
-		$( '#result' ).keypress( keypressed );
-
-		$( '#message' ).click( nextChallengeIfFinished );
-
-		nextChallenge();
-
-		showTime();
-	}
 
 	function nextChallenge()
 	{
@@ -212,5 +187,30 @@ de.ratopi.mathetest = function ()
 			store.setItem("results", JSON.stringify(o));
 		}
 	}
+
+	function init( _challenger )
+	{
+		challenger = _challenger;
+
+		correctAnswers = 0;
+		answerCount = 0;
+		runningTime = 5 * 60 * 1000; // 5 minutes
+
+		$( "#resultDiv" ).hide();
+
+		$( '#result' ).keypress( keypressed );
+
+		$( '#message' ).click( nextChallengeIfFinished );
+
+		nextChallenge();
+
+		showTime();
+	}
+
+	// ---
+
+	return {
+		"init": init
+	};
 
 }();
