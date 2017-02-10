@@ -1,6 +1,5 @@
-
 var challengers =
-	function()
+	function ()
 	{
 		// returns a number between 1 and 10
 		function createNumber_1_10()
@@ -19,7 +18,7 @@ var challengers =
 
 			"?m": {
 				"name": "Multiplikation",
-				"fn":  function()
+				"fn": function ()
 				{
 					var a = createNumber_1_10();
 					var b = createNumber_1_10();
@@ -27,13 +26,13 @@ var challengers =
 					return {
 						"task": a + " · " + b,
 						"result": c
-						};
+					};
 				}
 			},
 
 			"?m100": {
 				"name": "Multiplikation (mit Zehnern)",
-				"fn":  function()
+				"fn": function ()
 				{
 					var a = createNumber_1_10();
 					var b = createNumber_1_10();
@@ -44,13 +43,13 @@ var challengers =
 					return {
 						"task": a + " · " + b,
 						"result": c
-						};
+					};
 				}
 			},
 
 			"?d": {
 				"name": "Division",
-				"fn": function()
+				"fn": function ()
 				{
 					var a = createNumber_1_10();
 					var b = createNumber_1_10();
@@ -64,7 +63,7 @@ var challengers =
 
 			"?d100": {
 				"name": "Division (mit Zehnern)",
-				"fn": function()
+				"fn": function ()
 				{
 					var a = createNumber_1_10();
 					var b = createNumber_1_10();
@@ -81,7 +80,7 @@ var challengers =
 
 			"?dr": {
 				"name": "Division mit Rest",
-				"fn": function()
+				"fn": function ()
 				{
 					var a = createNumber_1_10();
 					var b = createNumber_1_10();
@@ -105,7 +104,7 @@ var challengers =
 
 			"?a": {
 				"name": "Addition",
-				"fn": function()
+				"fn": function ()
 				{
 					var a = createNumber_1_10() - 1;
 					var b = createNumber_1_10() - 1;
@@ -121,7 +120,7 @@ var challengers =
 
 			"?s": {
 				"name": "Subtraktion",
-				"fn": function()
+				"fn": function ()
 				{
 					var a = createNumber_1_10();
 					var b = createNumber_1_10();
@@ -131,7 +130,27 @@ var challengers =
 					var expected = c - a;
 
 					return {
-						"task": c + " - " +a,
+						"task": c + " - " + a,
+						"result": expected
+					};
+				}
+			},
+
+			"?s10": {
+				"name": "Subtraktion (10er)",
+				"fn": function ()
+				{
+					var a, b, c, expected;
+
+					do {
+						a = createNumber_1_10();
+						b = createNumber_1_10();
+					} while ( b > a );
+
+					expected = a - b;
+
+					return {
+						"task": a + " - " + b,
 						"result": expected
 					};
 				}
@@ -139,7 +158,7 @@ var challengers =
 
 			"?10er": {
 				"name": "10er Freunde",
-				"fn": function()
+				"fn": function ()
 				{
 					var c = 10;
 
