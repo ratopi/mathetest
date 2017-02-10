@@ -137,5 +137,22 @@ var challengers =
 				}
 			},
 
+			"?10er": {
+				"name": "10er Freunde",
+				"fn": function()
+				{
+					var c = 10;
+
+					var a = createNumber_1_10();
+
+					var expected = c - a;
+
+					return {
+						"task": c + " - " + a,
+						"result": expected
+					};
+				}
+			},
+
 		};
 	}();
