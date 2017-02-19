@@ -199,6 +199,41 @@ var challengers =
 				}
 			},
 
+
+			"?ag": {
+				"name": "Addition großer Zahlen",
+				"fn": function ()
+				{
+					var a = createNumber_1_max( 500 ) - 1;
+					var b = createNumber_1_max( 500 ) - 1;
+
+					var expected = a + b;
+
+					return {
+						"task": a + " + " + b,
+						"result": expected
+					};
+				}
+			},
+
+			"?sg": {
+				"name": "Subtraktion großer Zahlen",
+				"fn": function ()
+				{
+					var a = createNumber_1_max( 500 );
+					var b = createNumber_1_max( 500 );
+
+					var c = a + b;
+
+					var expected = c - a;
+
+					return {
+						"task": c + " - " + a,
+						"result": expected
+					};
+				}
+			},
+
 			"?dvs": {
 				"name": "Winkelsummen in Drei- und Vierecken",
 				"fn": function ()
