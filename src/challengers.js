@@ -39,6 +39,7 @@ var challengers =
 				}
 			},
 
+			/*
 			"?10erS": {
 				"name": "10er Freunde (Subtraktion)",
 				"fn": function ()
@@ -55,6 +56,7 @@ var challengers =
 					};
 				}
 			},
+			*/
 
 			"?a": {
 				"name": "Addition",
