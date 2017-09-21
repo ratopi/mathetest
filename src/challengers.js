@@ -22,6 +22,40 @@ var challengers =
 
 		return {
 
+			"?10er": {
+				"name": "10er Freunde",
+				"fn": function ()
+				{
+					var c = 10;
+
+					var a = createNumber_1_10();
+
+					var expected = c - a;
+
+					return {
+						"task": a + " + ? = " + c + " : ",
+						"result": expected
+					};
+				}
+			},
+
+			"?10erS": {
+				"name": "10er Freunde (Subtraktion)",
+				"fn": function ()
+				{
+					var c = 10;
+
+					var a = createNumber_1_10();
+
+					var expected = c - a;
+
+					return {
+						"task": c + " - " + a + " = ",
+						"result": expected
+					};
+				}
+			},
+
 			"?a": {
 				"name": "Addition",
 				"fn": function ()
@@ -32,7 +66,7 @@ var challengers =
 					var expected = a + b;
 
 					return {
-						"task": a + " + " + b,
+						"task": a + " + " + b + " = ",
 						"result": expected
 					};
 				}
@@ -52,7 +86,7 @@ var challengers =
 					} while ( expected > 10 );
 
 					return {
-						"task": a + " + " + b,
+						"task": a + " + " + b + " = ",
 						"result": expected
 					};
 				}
@@ -70,7 +104,7 @@ var challengers =
 					var expected = c - a;
 
 					return {
-						"task": c + " - " + a,
+						"task": c + " - " + a + " = ",
 						"result": expected
 					};
 				}
@@ -90,24 +124,7 @@ var challengers =
 					expected = a - b;
 
 					return {
-						"task": a + " - " + b,
-						"result": expected
-					};
-				}
-			},
-
-			"?10er": {
-				"name": "10er Freunde",
-				"fn": function ()
-				{
-					var c = 10;
-
-					var a = createNumber_1_10();
-
-					var expected = c - a;
-
-					return {
-						"task": c + " - " + a,
+						"task": a + " - " + b + " = ",
 						"result": expected
 					};
 				}
@@ -121,7 +138,7 @@ var challengers =
 					var b = createNumber_1_10();
 					var c = a * b;
 					return {
-						"task": a + " · " + b,
+						"task": a + " · " + b + " = ",
 						"result": c
 					};
 				}
@@ -138,7 +155,7 @@ var challengers =
 
 					var c = a * b;
 					return {
-						"task": a + " · " + b,
+						"task": a + " · " + b + " = ",
 						"result": c
 					};
 				}
@@ -152,7 +169,7 @@ var challengers =
 					var b = createNumber_1_10();
 					var c = a * b;
 					return {
-						"task": c + " : " + b,
+						"task": c + " : " + b + " = ",
 						"result": a
 					};
 				}
@@ -169,7 +186,7 @@ var challengers =
 
 					var c = a * b;
 					return {
-						"task": c + " : " + b,
+						"task": c + " : " + b + " = ",
 						"result": a
 					};
 				}
@@ -193,7 +210,7 @@ var challengers =
 					if ( c === 0 ) expected.push( "R" + rest );
 
 					return {
-						"task": a + " : " + b,
+						"task": a + " : " + b + " = ",
 						"result": expected
 					};
 				}
@@ -210,7 +227,7 @@ var challengers =
 					var expected = a + b;
 
 					return {
-						"task": a + " + " + b,
+						"task": a + " + " + b + " = ",
 						"result": expected
 					};
 				}
@@ -228,7 +245,7 @@ var challengers =
 					var expected = c - a;
 
 					return {
-						"task": c + " - " + a,
+						"task": c + " - " + a + " = ",
 						"result": expected
 					};
 				}
@@ -245,7 +262,7 @@ var challengers =
 						var c = 180 - a - b;
 
 						return {
-							"task": 180 + " - " + a + " - " + b,
+							"task": 180 + " - " + a + " - " + b + " = ",
 							"result": c
 						};
 					}
@@ -258,7 +275,7 @@ var challengers =
 						var d = 360 - a - b - c;
 
 						return {
-							"task": 360 + " - " + a + " - " + b + " - " + c,
+							"task": 360 + " - " + a + " - " + b + " - " + c + " = ",
 							"result": d
 						};
 					}
