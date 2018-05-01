@@ -132,6 +132,31 @@ var challengers =
 				}
 			},
 
+			"?m510": {
+				"name": "Multiplikation mit 5 und 10",
+				"fn": function ()
+				{
+					var a, b;
+
+					if ( Math.random() < .5 )
+					{
+						a = createNumber_1_max(2) * 5;
+						b = createNumber_1_10();
+					}
+					else
+					{
+						a = createNumber_1_10();
+						b = createNumber_1_max(2) * 5;
+					}
+
+					var c = a * b;
+					return {
+						"task": a + " · " + b + " = ",
+						"result": c
+					};
+				}
+			},
+
 			"?m": {
 				"name": "Multiplikation",
 				"fn": function ()
